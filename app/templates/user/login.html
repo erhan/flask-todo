@@ -1,0 +1,16 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "_base.html" %}
+{% set active_page = "login" %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h3>Kullanıcı Girişi</h3>
+            <p>Örnek Kullanıcı. </p>
+            <p>Email : test@test.com </p>
+            <p>Şifre : demo </p>
+        </div>
+        <div class="col-md-offset-4 col-md-4">
+            {{ wtf.quick_form(form, button_map={'submit': 'success'}) }}
+        </div>
+    </div>
+{%-endblock %}

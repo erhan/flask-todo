@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% set active_page = "home" %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h3><img src="{{ url_for('static', filename='img/logo.png')}}" style="height: 60px" alt="">  Flask Todo Uygulaması</h3>
+        <hr>
+        <h4>Kurulum : </h4>
+        <hr>
+        <ul>
+            <li>Github'tan clone edin  : <code>$ git clone https://github.com/erhan/flask-todo</code></li>
+            <li>Virtualenv klasörünü oluşturun  : <code>$ virtualenv -p python3.5 env</code></li>
+            <li>Gerekli modülleri `requirements.txt` dosyasından kurun.  : <code>$ env/bin/pip install -r requirements.txt</code></li>
+            <li>Veritabanını güncelleyin.(Default kullanıcı oluşturur.)  : <code>$ env/bin/python migrate.py db upgrade</code></li>
+            <li>Uygulamayı çalıştırın  : <code>$ env/bin/python run.py</code></li>
+        </ul>
+        <hr>
+        <p>Kaynak Kodlar :  <a href="https://github.com/erhan/flask-todo">https://github.com/erhan/flask-todo</a></p>
+    </div>
+</div>
+{% endblock %}

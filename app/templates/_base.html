@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask Todo App</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('default.index') }}"> Flask Todo</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if g.user %}
+                <li class="{% if active_page=='todo' %}active{%endif %}">
+                    <a href="{{ url_for('todo.index') }}"> <span class="glyphicon glyphicon-list"></span> Todo</a>
+                </li>
+                <li class="{% if active_page =='edit' %}active{%endif %}">
+                    <a href="{{ url_for('user.edit') }}"> <span class="glyphicon glyphicon-pencil"></span> {{
+                        g.user["full_name"] }}</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('user.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Çıkış</a>
+                </li>
+                {% else %}
+                <li class="{% if active_page=='register' %}active{%endif %}">
+                    <a href="{{ url_for('user.register') }}"> <span class="glyphicon glyphicon-user"></span> Kayıt</a>
+                </li>
+                <li class="{% if active_page=='login' %}active{%endif %}">
+                    <a href="{{ url_for('user.login') }}"><span class="glyphicon glyphicon-log-in"></span> Giriş</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% include '_flash_messages.html' %}
+{% block content %}{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+{% block footer %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "_base.html" %}
+{% set active_page = "edit" %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron" style="min-height: 150px;">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="{{ g.user['email'] | gravatar_filter }}" alt="" height="100px">
+            </div>
+            <div class="col-md-10">
+                <h3>Merhaba, {{ g.user["full_name"] }}</h3>
+                <p>Bu sayfadan bilgilerini düzenleyebilirsin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-4 col-md-4">
+        {{ wtf.quick_form(form, button_map={'submit': 'success'}) }}
+    </div>
+</div>
+{%-endblock %}

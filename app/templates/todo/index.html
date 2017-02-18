@@ -1,0 +1,39 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends '_base.html' %}
+{% set active_page = "todo" %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h3>Merhaba, {{ g.user["full_name"] }}</h3>
+        <p>Bu sayfada yapılacaklar listeni düzenleyebilirsin.</p>
+        {{ wtf.quick_form(form, button_map={'submit': 'success'}) }}
+    </div>
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tarih</th>
+                    <th>Yapılacak</th>
+                    <th>Yapıldı / Yapılmadı</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in todos %}
+                <tr>
+                    <td>{{ item.date_created }}</td>
+                    {% if item.status %}
+                        <td><del><i>{{ item.description }}</i></del></td>
+                        <td><a href="{{ url_for('todo.change_status', todo_id=item.id, status=0)}}"><span class="glyphicon glyphicon-unchecked"></span></a></td>
+                    {% else %}
+                        <td>{{ item.description }}</td>
+                        <td><a href="{{ url_for('todo.change_status', todo_id=item.id, status=1)}}"><span class="glyphicon glyphicon-ok"></span></a></td>
+                    {% endif %}
+                    <td><a href="{{ url_for('todo.delete', todo_id=item.id)}}"><span class="glyphicon glyphicon-trash" style="color:red"></span></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

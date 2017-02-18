@@ -1,0 +1,7 @@
+Flask
+flask-wtf
+flask-bootstrap
+psycopg2
+Flask-Migrate
+Flask-SQLAlchemy
+gunicorn
